@@ -12,7 +12,7 @@ const ProfileCard = () => {
       <h1 className="mb-3 font-bold px-2 text-base md:text-3xl ">Profile</h1>
       <div className=" grid  md:grid-cols-4 gap-4  rounded-lg mb-6">
         <div className="md:col-span-2 bg-white rounded-lg shadow-lg py-4 px-2">
-          <Profile />
+          <Profile id={""} />
         </div>
         <div className="bg-white rounded-lg shadow-lg">
           <CalendarComponent />
