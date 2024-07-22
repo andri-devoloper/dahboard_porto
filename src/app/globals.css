@@ -2,32 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* .no-border .react-calendar__tile {s */
+
+.react-calendar {
+  background-color: rebeccapurple;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.shadow-md {
+  border: red !important;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* styles/globals.css */
+
+.react-calendar {
+  border: none !important;
+  width: 100% !important;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.react-calendar__tile {
+  border: none !important;
+  font-size: 10px !important;
+}
+
+.react-calendar__tile--custom {
+  background-color: #4a90e2 !important;
+  color: white !important;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+/* Mengatur padding dan margin */
+.react-calendar__tile--default {
+  padding: 0.1px;
+  margin: 0.1px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.react-calendar__month-view__days {
+  padding: 1px !important;
+  height: 10px !important;
+}
+
+.react-calendar__month-view__days__day {
+  padding: 8.5px !important;
 }

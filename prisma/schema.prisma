@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  name      String
+  password  String
+  rules     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Profile Profile[]
+}
+
+model Profile {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  position  String
+  phone     String
+  company   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user         User           @relation(fields: [userId], references: [id])
+  EmployeeData EmployeeData[]
+}
+
+model EmployeeData {
+  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  profileId        String @db.ObjectId
+  hireDate         String
+  workFor          String
+  employeeId       String
+  birthDate        String
+  address          String
+  secondaryAddress String
+  province         String
+  postalCode       String
+
+  profile     Profile       @relation(fields: [profileId], references: [id])
+  ProfesiData ProfesiData[]
+}
+
+model ProfesiData {
+  id             String @id @default(auto()) @map("_id") @db.ObjectId
+  employeeDataId String @db.ObjectId
+  profesiTime    String
+  profesiJabatan String
+  profesiLokasi  String
+
+  employeeData EmployeeData @relation(fields: [employeeDataId], references: [id])
+}
+
+model Catogory {
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  category    String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  leaderboard Leaderboard[]
+}
+
+model Leaderboard {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  judul     String
+  kode      String
+  deskripsi String
+  url_img   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Catogory   Catogory? @relation(fields: [catogoryId], references: [id])
+  catogoryId String?   @db.ObjectId
+}
