@@ -47,10 +47,7 @@ const InvoicePieChart: React.FC = () => {
         <div className="ml-5 w-max">
           {data.map((entry, index) => (
             <div key={index} className="flex items-center mb-1">
-              <div
-                className="w-3 h-3 mr-2"
-                style={{ backgroundColor: entry.color }}
-              ></div>
+              <div className={`w-3 h-3 mr-2 bg-[${entry.color}]`}></div>
               <span className="md:text-sm font-medium text-[10px]">
                 {entry.title}: {entry.value}%
               </span>

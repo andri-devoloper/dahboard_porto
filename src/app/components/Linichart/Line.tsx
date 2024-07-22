@@ -91,7 +91,47 @@ const LineChart = () => {
         </select>
       </div>
       <div className="relative md:h-80">
-        <Line options={options} data={data} />
+        <Line
+          options={{
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: false,
+              },
+              tooltip: {
+                callbacks: {
+                  label: (context: { raw: any }) => `${context.raw}%`,
+                },
+              },
+            },
+            scales: {
+              x: {
+                grid: {
+                  display: false,
+                },
+              },
+              y: {
+                ticks: {
+                  callback: (value: any) => `${value}%`,
+                },
+                grid: {
+                  // drawBorder: false,
+                  color: (context) => {
+                    const ctx = context.chart.ctx;
+                    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+                    gradient.addColorStop(0, "rgba(0, 0, 0, 0.1)");
+                    gradient.addColorStop(0.5, "rgba(0, 0, 0, 0.05)");
+                    gradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+                    return gradient;
+                  },
+                  lineWidth: 1,
+                },
+              },
+            },
+          }}
+          data={data}
+        />
       </div>
     </div>
   );
